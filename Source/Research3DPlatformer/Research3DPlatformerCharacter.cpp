@@ -142,7 +142,6 @@ void AResearch3DPlatformerCharacter::StartDash()
 {
 	if (CanDash == true)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Hello"));
 		FRotator PlayerDirection = GetActorRotation();
 		FVector PlayerLocation = GetActorForwardVector();
 		LaunchCharacter(PlayerLocation * DashEnergy, 0, false);
