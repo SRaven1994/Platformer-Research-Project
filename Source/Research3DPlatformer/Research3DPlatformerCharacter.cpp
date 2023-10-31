@@ -58,6 +58,9 @@ AResearch3DPlatformerCharacter::AResearch3DPlatformerCharacter()
 
 	// Set initial dash energy
 	DashEnergy = 1200;
+
+	// Set initial attack stance
+	IsAttacking = false;
 }
 
 void AResearch3DPlatformerCharacter::BeginPlay()
@@ -96,6 +99,10 @@ void AResearch3DPlatformerCharacter::SetupPlayerInputComponent(class UInputCompo
 		//Dash
 		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Started, this, &AResearch3DPlatformerCharacter::StartDash);
 		EnhancedInputComponent->BindAction(DashAction, ETriggerEvent::Completed, this, &AResearch3DPlatformerCharacter::EndDash);
+
+		//Attack
+		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Started, this, &AResearch3DPlatformerCharacter::StartAttack);
+		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Completed, this, &AResearch3DPlatformerCharacter::EndAttack);
 
 	}
 
@@ -154,6 +161,16 @@ void AResearch3DPlatformerCharacter::StartDash()
 void AResearch3DPlatformerCharacter::EndDash()
 {
 	CanDash = true;
+}
+
+void AResearch3DPlatformerCharacter::StartAttack()
+{
+	IsAttacking = true;
+}
+
+void AResearch3DPlatformerCharacter::EndAttack()
+{
+	IsAttacking = false;
 }
 
 // On every frame

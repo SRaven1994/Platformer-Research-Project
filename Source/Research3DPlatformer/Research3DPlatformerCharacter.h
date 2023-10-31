@@ -41,6 +41,10 @@ class AResearch3DPlatformerCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* DashAction;
 
+	// Attack Input
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* AttackAction;
+
 	// Create lives
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
 	int Lives;
@@ -61,6 +65,10 @@ class AResearch3DPlatformerCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
 	bool CanDash;
 
+	// Create Player Attack
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
+	bool IsAttacking;
+
 public:
 	AResearch3DPlatformerCharacter();
 	
@@ -78,7 +86,10 @@ protected:
 
 	void EndDash();
 
+	// Create attack functions
+	void StartAttack();
 
+	void EndAttack();
 			
 
 protected:
