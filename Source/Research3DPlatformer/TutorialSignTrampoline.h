@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TutorialSignDash.generated.h"
+#include "TutorialSignTrampoline.generated.h"
 
 UCLASS()
-class RESEARCH3DPLATFORMER_API ATutorialSignDash : public AActor
+class RESEARCH3DPLATFORMER_API ATutorialSignTrampoline : public AActor
 {
 	GENERATED_BODY()
 	
@@ -26,7 +26,7 @@ public:
 	class USphereComponent* CollisionVolume;
 
 	// Sets default values for this actor's properties
-	ATutorialSignDash();
+	ATutorialSignTrampoline();
 
 protected:
 	// Called when the game starts or when spawned

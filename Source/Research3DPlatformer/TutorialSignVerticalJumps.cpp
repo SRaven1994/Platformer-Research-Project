@@ -42,11 +42,14 @@ void ATutorialSignVerticalJumps::Tick(float DeltaTime)
 
 }
 
+// Collision functions
 void ATutorialSignVerticalJumps::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+
 }
 
 void ATutorialSignVerticalJumps::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+
 }
 

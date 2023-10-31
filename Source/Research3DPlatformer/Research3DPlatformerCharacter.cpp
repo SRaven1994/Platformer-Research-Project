@@ -168,7 +168,7 @@ void AResearch3DPlatformerCharacter::Tick(float DeltaTime)
 // Force character to jump
 void AResearch3DPlatformerCharacter::ForceJump()
 {
-	LaunchCharacter(FVector(0,0,100),false, true);
+	LaunchCharacter(FVector(0,0,1000),false, true);
 }
 
 // Lose a life

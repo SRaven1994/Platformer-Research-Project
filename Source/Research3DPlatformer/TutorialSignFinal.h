@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TutorialSignDash.generated.h"
+#include "TutorialSignFinal.generated.h"
 
 UCLASS()
-class RESEARCH3DPLATFORMER_API ATutorialSignDash : public AActor
+class RESEARCH3DPLATFORMER_API ATutorialSignFinal : public AActor
 {
 	GENERATED_BODY()
 	
@@ -26,7 +26,7 @@ public:
 	class USphereComponent* CollisionVolume;
 
 	// Sets default values for this actor's properties
-	ATutorialSignDash();
+	ATutorialSignFinal();
 
 protected:
 	// Called when the game starts or when spawned
@@ -38,9 +38,9 @@ public:
 
 	// Create Collision Functions
 	UFUNCTION()
-		virtual void OnOverlapBegin(class UPrimitiveComponent* newComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	virtual void OnOverlapBegin(class UPrimitiveComponent* newComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	UFUNCTION()
-		virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 };

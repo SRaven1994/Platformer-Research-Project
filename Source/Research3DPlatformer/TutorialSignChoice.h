@@ -11,7 +11,20 @@ class RESEARCH3DPLATFORMER_API ATutorialSignChoice : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
+public:
+
+	// Create mesh sign
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* Sign;
+
+	// Create mesh post
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MeshCollsions, meta = (AllowPrivateAccess = "true"))
+	UStaticMeshComponent* Post;
+
+	// Create box collision
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MeshCollsions, meta = (AllowPrivateAccess = "true"))
+	class USphereComponent* CollisionVolume;
+
 	// Sets default values for this actor's properties
 	ATutorialSignChoice();
 
@@ -22,5 +35,12 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	// Create Collision Functions
+	UFUNCTION()
+	virtual void OnOverlapBegin(class UPrimitiveComponent* newComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 };

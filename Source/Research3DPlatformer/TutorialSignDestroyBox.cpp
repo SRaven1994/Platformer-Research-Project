@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "TutorialSignDash.h"
+#include "TutorialSignDestroyBox.h"
 #include "Components/SphereComponent.h"
 #include "Research3DPlatformerCharacter.h"
 
 // Sets default values
-ATutorialSignDash::ATutorialSignDash()
+ATutorialSignDestroyBox::ATutorialSignDestroyBox()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -25,30 +25,29 @@ ATutorialSignDash::ATutorialSignDash()
 }
 
 // Called when the game starts or when spawned
-void ATutorialSignDash::BeginPlay()
+void ATutorialSignDestroyBox::BeginPlay()
 {
 	Super::BeginPlay();
-
 	// Add collision
-	CollisionVolume->OnComponentBeginOverlap.AddDynamic(this, &ATutorialSignDash::OnOverlapBegin);
-	CollisionVolume->OnComponentEndOverlap.AddDynamic(this, &ATutorialSignDash::OnOverlapEnd);
+	CollisionVolume->OnComponentBeginOverlap.AddDynamic(this, &ATutorialSignDestroyBox::OnOverlapBegin);
+	CollisionVolume->OnComponentEndOverlap.AddDynamic(this, &ATutorialSignDestroyBox::OnOverlapEnd);
 	
 }
 
 // Called every frame
-void ATutorialSignDash::Tick(float DeltaTime)
+void ATutorialSignDestroyBox::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
 // Collision functions
-void ATutorialSignDash::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ATutorialSignDestroyBox::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 
 }
 
-void ATutorialSignDash::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void ATutorialSignDestroyBox::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 
 }
