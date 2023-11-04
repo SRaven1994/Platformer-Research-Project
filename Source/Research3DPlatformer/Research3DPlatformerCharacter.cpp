@@ -61,6 +61,8 @@ AResearch3DPlatformerCharacter::AResearch3DPlatformerCharacter()
 
 	// Set initial attack stance
 	IsAttacking = false;
+
+	PrimaryActorTick.bCanEverTick = true;
 }
 
 void AResearch3DPlatformerCharacter::BeginPlay()
@@ -176,6 +178,9 @@ void AResearch3DPlatformerCharacter::EndAttack()
 // On every frame
 void AResearch3DPlatformerCharacter::Tick(float DeltaTime)
 {
+	
+	Super::Tick(DeltaTime);
+
 	if (CanDash == true && DashEnergy < 1200)
 	{
 		DashEnergy += 10;
