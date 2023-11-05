@@ -52,13 +52,13 @@ void ADoor::Tick(float DeltaTime)
 
 void ADoor::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	// when character collides with key, obtain key
+	// when character collides with door
 	if (Cast<AResearch3DPlatformerCharacter>(OtherActor))
 	{
 		AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(OtherActor);
 		if (Char)
 		{
-
+			ActivateDoor(Char);
 		}
 	}
 }
@@ -75,17 +75,21 @@ void ADoor::OpenDoor(float Value)
 	DoorRotate->SetRelativeRotation(Rot);
 }
 
-void ADoor::ActivateDoor()
+void ADoor::ActivateDoor(AResearch3DPlatformerCharacter* Char)
 {
-	if (bIsDoorClosed)
+	if(Char->Keys > 0)
 	{
-		Timeline.Play();
-	}
-	else
-	{
-		Timeline.Reverse();
+		if (bIsDoorClosed)
+		{
+			Timeline.Play();
+			Char->Keys -= 1;
+		}
+		else
+		{
+			Timeline.Reverse();
+		}
+		bIsDoorClosed = !bIsDoorClosed;
 	}
 
-	bIsDoorClosed = !bIsDoorClosed;
 }
 

@@ -66,5 +66,5 @@ public:
 
 	// Create activate door function
 	UFUNCTION()
-	void ActivateDoor();
+	void ActivateDoor(class AResearch3DPlatformerCharacter * Char);
 };
