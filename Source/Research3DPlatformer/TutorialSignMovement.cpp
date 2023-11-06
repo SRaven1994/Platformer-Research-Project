@@ -45,11 +45,27 @@ void ATutorialSignMovement::Tick(float DeltaTime)
 // Collision functions
 void ATutorialSignMovement::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	// wWhen character collides with coin, increase coin count
+	if (Cast<AResearch3DPlatformerCharacter>(OtherActor))
+	{
+		AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(OtherActor);
+		if (Char)
+		{
 
+		}
+	}
 }
 
 void ATutorialSignMovement::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+	// wWhen character collides with coin, increase coin count
+	if (Cast<AResearch3DPlatformerCharacter>(OtherActor))
+	{
+		AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(OtherActor);
+		if (Char)
+		{
 
+		}
+	}
 }
 
