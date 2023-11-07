@@ -24,13 +24,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MeshCollsions, meta = (AllowPrivateAccess = "true"))
 	class USphereComponent* CollisionVolume;
 
+	bool Active;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual void Tick(float DeltaTime);
 
 	// Create collision functions
 	UFUNCTION()
@@ -38,5 +40,7 @@ public:
 
 	UFUNCTION()
 	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	void DestroyObject();
 
 };

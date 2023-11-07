@@ -8,6 +8,7 @@
 #include "Research3DPlatformerCharacter.generated.h"
 
 
+
 UCLASS(config=Game)
 class AResearch3DPlatformerCharacter : public ACharacter
 {
@@ -92,10 +93,7 @@ protected:
 
 	void EndDash();
 
-	// Create attack functions
-	void StartAttack();
 
-	void EndAttack();
 			
 
 protected:
@@ -111,6 +109,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	virtual void Tick(float DeltaTime);
 	
+
+
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
@@ -130,5 +130,11 @@ public:
 
 	// Create gain key function
 	void GainKey();
+
+	// Create attack functions
+	void StartAttack();
+
+	void EndAttack();
+
 };
 

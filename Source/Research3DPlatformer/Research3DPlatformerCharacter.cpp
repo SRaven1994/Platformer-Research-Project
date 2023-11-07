@@ -9,6 +9,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "DestroyableObject.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -65,7 +66,7 @@ AResearch3DPlatformerCharacter::AResearch3DPlatformerCharacter()
 	// Set initial dash energy
 	DashEnergy = 1200;
 
-	// Set initial attack stance
+	// Set initial attack state
 	IsAttacking = false;
 
 	// Set initial checkpoint
@@ -176,6 +177,7 @@ void AResearch3DPlatformerCharacter::EndDash()
 
 void AResearch3DPlatformerCharacter::StartAttack()
 {
+
 	IsAttacking = true;
 }
 

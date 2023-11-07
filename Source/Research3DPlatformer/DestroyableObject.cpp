@@ -4,6 +4,8 @@
 #include "DestroyableObject.h"
 #include "Components/SphereComponent.h"
 #include "Research3DPlatformerCharacter.h"
+#include "GameFramework/Controller.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ADestroyableObject::ADestroyableObject()
@@ -19,6 +21,10 @@ ADestroyableObject::ADestroyableObject()
 	// Set mesh
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(GetRootComponent());
+
+	Active = false;
+
+
 
 }
 
@@ -38,24 +44,48 @@ void ADestroyableObject::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (Active == true)
+	{
+		DestroyObject();
+	}
 }
 
 // Collision functions
 void ADestroyableObject::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	// wWhen character collides with coin, increase coin count
+	// When character collides with object, can destroy
 	if (Cast<AResearch3DPlatformerCharacter>(OtherActor))
 	{
 		AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(OtherActor);
 		if (Char)
 		{
-
+			Active = true;
 		}
 	}
 }
 
 void ADestroyableObject::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+	// When character collides no longer with object, cannot destroy
+	if (Cast<AResearch3DPlatformerCharacter>(OtherActor))
+	{
+		AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(OtherActor);
+		if (Char)
+		{
+			Active = false;
+		}
+	}
+}
 
+void ADestroyableObject::DestroyObject()
+{
+	APlayerController* MyController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	APawn* MyPawn = MyController->GetPawn();
+	AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(MyPawn);
+	if (Char != nullptr && Char->IsAttacking == true)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Destroy"));
+		Destroy();
+	}
 }
 
