@@ -68,6 +68,9 @@ AResearch3DPlatformerCharacter::AResearch3DPlatformerCharacter()
 	// Set initial attack stance
 	IsAttacking = false;
 
+	// Set initial checkpoint
+	Checkpoint = 0;
+
 	PrimaryActorTick.bCanEverTick = true;
 }
 

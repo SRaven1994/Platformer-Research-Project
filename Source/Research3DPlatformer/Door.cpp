@@ -75,6 +75,7 @@ void ADoor::OpenDoor(float Value)
 	DoorRotate->SetRelativeRotation(Rot);
 }
 
+// Open door and consume key and set new checkpoint
 void ADoor::ActivateDoor(AResearch3DPlatformerCharacter* Char)
 {
 	if(Char->Keys > 0)
@@ -83,6 +84,7 @@ void ADoor::ActivateDoor(AResearch3DPlatformerCharacter* Char)
 		{
 			Timeline.Play();
 			Char->Keys -= 1;
+			Char->Checkpoint += 1;
 		}
 		else
 		{

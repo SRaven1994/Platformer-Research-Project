@@ -71,6 +71,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
 	bool IsAttacking;
 
+	// Create Player checkpoint
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
+	int Checkpoint;
+
 public:
 	AResearch3DPlatformerCharacter();
 	

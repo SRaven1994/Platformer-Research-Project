@@ -2,7 +2,7 @@
 
 
 #include "DestroyableObject.h"
-#include "Components/BoxComponent.h"
+#include "Components/SphereComponent.h"
 #include "Research3DPlatformerCharacter.h"
 
 // Sets default values
