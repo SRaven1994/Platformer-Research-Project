@@ -13,6 +13,15 @@ class AResearch3DPlatformerGameMode : public AGameModeBase
 
 public:
 	AResearch3DPlatformerGameMode();
+
+
+	// Spawn Player to states
+	bool SpawnPoint1Player { false };
+
+	bool SpawnPoint2Player { false };
+
+	bool SpawnPoint3Player { false };
+
 };
 
 

@@ -62,7 +62,11 @@ public:
 
 	// Create Dash Energy
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
-	int DashEnergy;
+	float DashEnergy;
+
+	// Create Max Dash Energy
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
+	float MaxDashEnergy;
 
 	// Create Can Dash
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
@@ -75,6 +79,8 @@ public:
 	// Create Player checkpoint
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
 	int Checkpoint;
+
+	
 
 public:
 	AResearch3DPlatformerCharacter();

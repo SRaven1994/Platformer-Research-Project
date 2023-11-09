@@ -3,6 +3,8 @@
 
 #include "DeathPlane.h"
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Research3DPlatformerGameMode.h"
 #include "Research3DPlatformerCharacter.h"
 
 // Sets default values
@@ -19,7 +21,6 @@ ADeathPlane::ADeathPlane()
 	// Set mesh
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(GetRootComponent());
-
 }
 
 // Called when the game starts or when spawned
@@ -46,7 +47,13 @@ void ADeathPlane::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActo
 	if (Cast<AResearch3DPlatformerCharacter>(OtherActor))
 	{
 		AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(OtherActor);
-		if (Char)
+		if (Char->Checkpoint == 0)
+		{
+			AResearch3DPlatformerGameMode* GameState = Cast<AResearch3DPlatformerGameMode>(GetWorld()->GetAuthGameMode());
+			GameState->SpawnPoint1Player = true;
+			Char->LoseLife();
+		}
+		else if (Char->Checkpoint == 1)
 		{
 			Char->LoseLife();
 		}

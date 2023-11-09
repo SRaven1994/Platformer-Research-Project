@@ -3,7 +3,11 @@
 
 #include "SpawnPoint1.h"
 #include "Components/BoxComponent.h"
+#include "Research3DPlatformerGameMode.h"
 #include "Research3DPlatformerCharacter.h"
+#include "GameFramework/Controller.h"
+#include "Kismet/GameplayStatics.h"
+
 
 // Sets default values
 ASpawnPoint1::ASpawnPoint1()
@@ -37,6 +41,12 @@ void ASpawnPoint1::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	AResearch3DPlatformerGameMode* GameState = Cast<AResearch3DPlatformerGameMode>(GetWorld()->GetAuthGameMode());
+	if (GameState->SpawnPoint1Player == true)
+	{
+		MovePlayer();
+	}
+
 }
 
 // Collision functions
@@ -46,5 +56,19 @@ void ASpawnPoint1::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherAct
 
 void ASpawnPoint1::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+}
+
+void ASpawnPoint1::MovePlayer()
+{
+	APlayerController* MyController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	APawn* MyPawn = MyController->GetPawn();
+	AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(MyPawn);
+	if (Char != nullptr)
+	{
+		FVector Location = GetActorLocation();
+		Char->SetActorLocation(Location, false);
+		AResearch3DPlatformerGameMode* GameState = Cast<AResearch3DPlatformerGameMode>(GetWorld()->GetAuthGameMode());
+		GameState->SpawnPoint1Player = false;
+	}
 }
 

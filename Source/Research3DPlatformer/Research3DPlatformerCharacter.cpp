@@ -64,7 +64,10 @@ AResearch3DPlatformerCharacter::AResearch3DPlatformerCharacter()
 	CanDash = true;
 
 	// Set initial dash energy
-	DashEnergy = 1200;
+	DashEnergy = 1200.0;
+
+	// Set initial dash energy
+	MaxDashEnergy = 1200.0;
 
 	// Set initial attack state
 	IsAttacking = false;
@@ -194,7 +197,7 @@ void AResearch3DPlatformerCharacter::Tick(float DeltaTime)
 
 	if (CanDash == true && DashEnergy < 1200)
 	{
-		DashEnergy += 10;
+		DashEnergy += 10.0;
 	}
 }
 
@@ -208,6 +211,10 @@ void AResearch3DPlatformerCharacter::ForceJump()
 void AResearch3DPlatformerCharacter::LoseLife()
 {
 	Lives -= 1;
+	if (Lives == 0)
+	{
+		Destroy();
+	}
 }
 
 // Gain a life

@@ -84,7 +84,6 @@ void ADestroyableObject::DestroyObject()
 	AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(MyPawn);
 	if (Char != nullptr && Char->IsAttacking == true)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Destroy"));
 		Destroy();
 	}
 }
