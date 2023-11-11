@@ -80,7 +80,21 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
 	int Checkpoint;
 
-	
+	// Create start timer
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Timers, meta = (AllowPrivateAccess = "true"))
+	bool StartTimer;
+
+	// Create milliseconds
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Timers, meta = (AllowPrivateAccess = "true"))
+	int Milliseconds;
+
+	// Create seconds
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Timers, meta = (AllowPrivateAccess = "true"))
+	int Seconds;
+
+	// Create minutes
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Timers, meta = (AllowPrivateAccess = "true"))
+	int Minutes;
 
 public:
 	AResearch3DPlatformerCharacter();
@@ -141,6 +155,12 @@ public:
 	void StartAttack();
 
 	void EndAttack();
+
+	// Create timer function
+	void Timer();
+
+	// Create Gain dash energy function
+	void GainEnergy();
 
 };
 

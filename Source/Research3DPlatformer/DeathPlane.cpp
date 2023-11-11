@@ -43,7 +43,7 @@ void ADeathPlane::Tick(float DeltaTime)
 // Collision functions
 void ADeathPlane::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	// On collision with player character, subtract a life
+	// On collision with player character, subtract a life and prepare to move player somewhere
 	if (Cast<AResearch3DPlatformerCharacter>(OtherActor))
 	{
 		AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(OtherActor);
@@ -55,6 +55,8 @@ void ADeathPlane::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActo
 		}
 		else if (Char->Checkpoint == 1)
 		{
+			AResearch3DPlatformerGameMode* GameState = Cast<AResearch3DPlatformerGameMode>(GetWorld()->GetAuthGameMode());
+			GameState->SpawnPoint2Player = true;
 			Char->LoseLife();
 		}
 	}

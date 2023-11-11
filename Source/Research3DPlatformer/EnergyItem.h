@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "SpawnPoint1.generated.h"
+#include "EnergyItem.generated.h"
 
 UCLASS()
-class RESEARCH3DPLATFORMER_API ASpawnPoint1 : public AActor
+class RESEARCH3DPLATFORMER_API AEnergyItem : public AActor
 {
 	GENERATED_BODY()
 	
@@ -17,12 +17,20 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MeshCollsions, meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* Mesh;
 
+	// Create is rotating
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Rotations, meta = (AllowPrivateAccess = "true"))
+	bool bRotate;
+
+	// Create rotation rate
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Rotations, meta = (AllowPrivateAccess = "true"))
+	float RotationRate;
+
 	// Create sphere collision
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MeshCollsions, meta = (AllowPrivateAccess = "true"))
-	class UBoxComponent* CollisionVolume;
+	class USphereComponent* CollisionVolume;
 
 	// Sets default values for this actor's properties
-	ASpawnPoint1();
+	AEnergyItem();
 
 protected:
 	// Called when the game starts or when spawned
@@ -32,14 +40,11 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Create Collision Functions
+	// Create collision functions
 	UFUNCTION()
 	virtual void OnOverlapBegin(class UPrimitiveComponent* newComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	UFUNCTION()
 	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-
-	// Create move player location function
-	void MovePlayer();
 
 };

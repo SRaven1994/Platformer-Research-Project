@@ -3,6 +3,8 @@
 
 #include "Teleporter1.h"
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Research3DPlatformerGameMode.h"
 #include "Research3DPlatformerCharacter.h"
 
 // Sets default values
@@ -49,7 +51,8 @@ void ATeleporter1::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherAct
 		AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(OtherActor);
 		if (Char)
 		{
-
+			AResearch3DPlatformerGameMode* GameState = Cast<AResearch3DPlatformerGameMode>(GetWorld()->GetAuthGameMode());
+			GameState->SpawnPoint3Player = true;
 		}
 	}
 }

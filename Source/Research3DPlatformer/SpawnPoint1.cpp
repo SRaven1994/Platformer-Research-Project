@@ -58,6 +58,7 @@ void ASpawnPoint1::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor
 {
 }
 
+// Move player to the spawn point in the world
 void ASpawnPoint1::MovePlayer()
 {
 	APlayerController* MyController = UGameplayStatics::GetPlayerController(GetWorld(), 0);

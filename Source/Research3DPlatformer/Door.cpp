@@ -78,11 +78,12 @@ void ADoor::OpenDoor(float Value)
 // Open door and consume key and set new checkpoint
 void ADoor::ActivateDoor(AResearch3DPlatformerCharacter* Char)
 {
-	if(Char->Keys > 0)
+	if(Char->Keys > 0 && DoorOpened == false)
 	{
 		if (bIsDoorClosed)
 		{
 			Timeline.Play();
+			DoorOpened = true;
 			Char->Keys -= 1;
 			Char->Checkpoint += 1;
 		}

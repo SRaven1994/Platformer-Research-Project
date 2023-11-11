@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Coin.h"
+#include "EnergyItem.h"
 #include "Components/SphereComponent.h"
 #include "Research3DPlatformerCharacter.h"
 
 // Sets default values
-ACoin::ACoin()
+AEnergyItem::AEnergyItem()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -24,21 +24,22 @@ ACoin::ACoin()
 	bRotate = true;
 
 	RotationRate = 90;
+
 }
 
 // Called when the game starts or when spawned
-void ACoin::BeginPlay()
+void AEnergyItem::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	// Add collision
-	CollisionVolume->OnComponentBeginOverlap.AddDynamic(this, &ACoin::OnOverlapBegin);
-	CollisionVolume->OnComponentEndOverlap.AddDynamic(this, &ACoin::OnOverlapEnd);
 
+	// Add collision
+	CollisionVolume->OnComponentBeginOverlap.AddDynamic(this, &AEnergyItem::OnOverlapBegin);
+	CollisionVolume->OnComponentEndOverlap.AddDynamic(this, &AEnergyItem::OnOverlapEnd);
+	
 }
 
 // Called every frame
-void ACoin::Tick(float DeltaTime)
+void AEnergyItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
@@ -53,21 +54,21 @@ void ACoin::Tick(float DeltaTime)
 }
 
 // Collision functions
-void ACoin::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AEnergyItem::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	// When character collides with coin, increase coin count
+	// When character collides with energy, set dash energy to near max
 	if (Cast<AResearch3DPlatformerCharacter>(OtherActor))
 	{
 		AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(OtherActor);
 		if (Char)
 		{
-			Char->GainCoin();
+			Char->GainEnergy();
 			Destroy();
 		}
 	}
 }
 
-void ACoin::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void AEnergyItem::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 
 }

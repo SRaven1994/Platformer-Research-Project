@@ -75,6 +75,18 @@ AResearch3DPlatformerCharacter::AResearch3DPlatformerCharacter()
 	// Set initial checkpoint
 	Checkpoint = 0;
 
+	// Set initial milliseconds
+	Milliseconds = 0;
+
+	// Set initial seconds
+	Seconds = 0;
+
+	// Set initial minutes
+	Minutes = 0;
+
+	// Set initial start timer
+	StartTimer = false;
+
 	PrimaryActorTick.bCanEverTick = true;
 }
 
@@ -199,6 +211,22 @@ void AResearch3DPlatformerCharacter::Tick(float DeltaTime)
 	{
 		DashEnergy += 10.0;
 	}
+
+	if (StartTimer == true)
+	{
+
+	}
+}
+
+// Timer - on milliseconds equal to 100 increamnt second, if seconds equal 60, incremeant minutes
+void AResearch3DPlatformerCharacter::Timer()
+{
+
+}
+
+void AResearch3DPlatformerCharacter::GainEnergy()
+{
+	DashEnergy = 1150;
 }
 
 // Force character to jump

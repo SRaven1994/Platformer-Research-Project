@@ -15,7 +15,7 @@ public:
 	AResearch3DPlatformerGameMode();
 
 
-	// Spawn Player to states
+	// Spawn Player states
 	bool SpawnPoint1Player { false };
 
 	bool SpawnPoint2Player { false };
