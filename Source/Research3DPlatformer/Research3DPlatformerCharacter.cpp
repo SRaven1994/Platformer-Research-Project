@@ -87,6 +87,12 @@ AResearch3DPlatformerCharacter::AResearch3DPlatformerCharacter()
 	// Set initial start timer
 	StartTimer = false;
 
+	// Set initial on ladder
+	OnLadder = false;
+
+	// Set initial Unlimited Dash Energy
+	UnlimitedDashEnergy = false;
+
 	PrimaryActorTick.bCanEverTick = true;
 }
 
@@ -174,7 +180,14 @@ void AResearch3DPlatformerCharacter::Look(const FInputActionValue& Value)
 // Make character dash
 void AResearch3DPlatformerCharacter::StartDash()
 {
-	if (CanDash == true)
+	if (UnlimitedDashEnergy == true && CanDash == true)
+	{
+		FRotator PlayerDirection = GetActorRotation();
+		FVector PlayerLocation = GetActorForwardVector();
+		LaunchCharacter(PlayerLocation * DashEnergy, 0, false);
+		CanDash = false;
+	}
+	else if (CanDash == true)
 	{
 		FRotator PlayerDirection = GetActorRotation();
 		FVector PlayerLocation = GetActorForwardVector();
@@ -214,16 +227,35 @@ void AResearch3DPlatformerCharacter::Tick(float DeltaTime)
 
 	if (StartTimer == true)
 	{
+		Timer();
+	}
 
+	if (OnLadder == true)
+	{
+		LaunchCharacter(FVector(0, 0, 400), false, true);
 	}
 }
 
-// Timer - on milliseconds equal to 100 increamnt second, if seconds equal 60, incremeant minutes
+// Timer - on milliseconds equal to 60 increamnt second, if seconds equal 60, incremeant minutes
 void AResearch3DPlatformerCharacter::Timer()
 {
-
+	if (Seconds == 60)
+	{
+		Minutes += 1;
+		Seconds = 0;
+	}
+	else if (Milliseconds == 60)
+	{
+		Seconds += 1;
+		Milliseconds = 0;
+	}
+	else
+	{
+		Milliseconds += 2;
+	}
 }
 
+// on collecting energy item, set energy to near full
 void AResearch3DPlatformerCharacter::GainEnergy()
 {
 	DashEnergy = 1150;

@@ -40,20 +40,30 @@ void ALadderV2::Tick(float DeltaTime)
 
 }
 
+// collision functions
 void ALadderV2::OnOverlapBegin(UPrimitiveComponent* newComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	// wWhen character collides with coin, increase coin count
+	// When character collides with ladder, begin accend
 	if (Cast<AResearch3DPlatformerCharacter>(OtherActor))
 	{
 		AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(OtherActor);
 		if (Char)
 		{
-
+			Char->OnLadder = true;
 		}
 	}
 }
 
 void ALadderV2::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+	// When character stop collides with ladder, stop accend
+	if (Cast<AResearch3DPlatformerCharacter>(OtherActor))
+	{
+		AResearch3DPlatformerCharacter* Char = Cast<AResearch3DPlatformerCharacter>(OtherActor);
+		if (Char)
+		{
+			Char->OnLadder = false;
+		}
+	}
 }
 

@@ -68,6 +68,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
 	float MaxDashEnergy;
 
+	// Create Unlimited Dash Energu
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
+	bool UnlimitedDashEnergy;
+
 	// Create Can Dash
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
 	bool CanDash;
@@ -95,6 +99,11 @@ public:
 	// Create minutes
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Timers, meta = (AllowPrivateAccess = "true"))
 	int Minutes;
+
+	// Create on ladder
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterStats, meta = (AllowPrivateAccess = "true"))
+	bool OnLadder;
+
 
 public:
 	AResearch3DPlatformerCharacter();
