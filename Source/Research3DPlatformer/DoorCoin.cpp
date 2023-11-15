@@ -79,7 +79,7 @@ void ADoorCoin::OpenDoor(float Value)
 
 void ADoorCoin::ActivateDoor(AResearch3DPlatformerCharacter* Char)
 {
-	if (Char->Coins == 100)
+	if (Char->Coins >= 100)
 	{
 		if (bIsDoorClosed)
 		{
